@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>MapPointer</title>
+  <title>MapPointer - OpenStreetMap</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -11,17 +12,8 @@
     <div class="title">MapPointer</div>
     <div id="coords" class="coords" aria-live="polite">緯度: —　経度: —</div>
   </header>
-  <main id="map" aria-label="Google Map"></main>
-  <div id="setup" class="setup hidden">
-    <div class="setup-card">
-      <h1>Google Maps API Key</h1>
-      <p>このGitHub PagesでGoogle Mapsを表示するにはAPIキーが必要です。</p>
-      <label for="apiKey">APIキー</label>
-      <input id="apiKey" type="password" autocomplete="off" placeholder="AIza..." />
-      <button id="saveKey">保存して表示</button>
-      <p class="note">キーはこのブラウザのlocalStorageにのみ保存します。</p>
-    </div>
-  </div>
+  <main id="map" aria-label="OpenStreetMap"></main>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
