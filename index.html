@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MapPointer</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="toolbar">
+    <div class="title">MapPointer</div>
+    <div id="coords" class="coords" aria-live="polite">緯度: —　経度: —</div>
+  </header>
+  <main id="map" aria-label="Google Map"></main>
+  <div id="setup" class="setup hidden">
+    <div class="setup-card">
+      <h1>Google Maps API Key</h1>
+      <p>このGitHub PagesでGoogle Mapsを表示するにはAPIキーが必要です。</p>
+      <label for="apiKey">APIキー</label>
+      <input id="apiKey" type="password" autocomplete="off" placeholder="AIza..." />
+      <button id="saveKey">保存して表示</button>
+      <p class="note">キーはこのブラウザのlocalStorageにのみ保存します。</p>
+    </div>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
