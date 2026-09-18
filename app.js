@@ -21,6 +21,15 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+// PCではマウス位置の座標を表示する。
 map.on("mousemove", (event) => showCoords(event.latlng));
 map.on("mouseout", () => showCoords(null));
-map.on("click", (event) => showCoords(event.latlng));
+
+// スマホ・タッチ端末では、タップした場所を地図の中心に移動し、
+// その位置の緯度・経度を表示する。
+map.on("click", (event) => {
+  if (L.Browser.touch) {
+    map.setView(event.latlng, map.getZoom(), { animate: false });
+  }
+  showCoords(event.latlng);
+});
