@@ -5,18 +5,11 @@ function formatCoords(latlng) {
   return latlng.lat.toFixed(6) + ", " + latlng.lng.toFixed(6);
 }
 
-function showCoords(latlng) {
-  if (!latlng) {
-    coordEl.textContent = "緯度: —　経度: —";
-    return;
-  }
+function showCenterCoords() {
+  const center = map.getCenter();
   coordEl.textContent =
-    "緯度: " + latlng.lat.toFixed(6) +
-    "　経度: " + latlng.lng.toFixed(6);
-}
-
-function updateCenterCoords() {
-  showCoords(map.getCenter());
+    "緯度: " + center.lat.toFixed(6) +
+    "　経度: " + center.lng.toFixed(6);
 }
 
 const map = L.map("map", {
@@ -30,9 +23,15 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// 地図の中心（画面中央）の座標を常に表示する。
-map.on("move", updateCenterCoords);
-map.whenReady(updateCenterCoords);
+// 地図をクリックした場所を表示の中心にする。
+map.on("click", (event) => {
+  map.setView(event.latlng, map.getZoom(), { animate: false });
+  showCenterCoords();
+});
+
+// 地図をドラッグ・ズームした場合も、表示の中心座標を更新する。
+map.on("moveend", showCenterCoords);
+map.whenReady(showCenterCoords);
 
 // 座標コピー
 copyCoordsEl.addEventListener("click", async () => {
