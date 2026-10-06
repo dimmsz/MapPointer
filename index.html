@@ -10,9 +10,13 @@
 <body>
   <header class="toolbar">
     <div class="title">MapPointer</div>
-    <div id="coords" class="coords" aria-live="polite">緯度: —　経度: —</div>
+    <div class="center-coords">
+      <span id="coords" class="coords" aria-live="polite">緯度: —　経度: —</span>
+      <button id="copyCoords" type="button">座標をコピー</button>
+    </div>
   </header>
   <main id="map" aria-label="OpenStreetMap"></main>
+  <div class="map-center-marker" aria-hidden="true"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="./app.js"></script>
 </body>
